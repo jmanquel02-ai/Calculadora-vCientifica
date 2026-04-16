@@ -31,4 +31,20 @@ class CalculadoraEcuacionesTest {
         // Si las rectas son paralelas, el determinante es 0
         assertThrows(ArithmeticException.class, () -> sis.calcularX(1, 1, 2, 1, 1, 5));
     }
+    // --- Pruebas para Ecuación de la Recta (Opción 5) ---
+    EcuacionRecta recta = new EcuacionRecta();
+
+    @Test
+    void testRectaNormal() {
+        // Puntos (0,0) y (2,4) -> m debe ser 2.0 y b debe ser 0.0
+        double m = recta.calcularPendiente(0, 0, 2, 4);
+        assertEquals(2.0, m);
+        assertEquals(0.0, recta.calcularIntercepto(0, 0, m));
+    }
+
+    @Test
+    void testErrorRectaVertical() {
+        // x1 y x2 iguales (2,5 y 2,10) -> Debe lanzar error
+        assertThrows(ArithmeticException.class, () -> recta.calcularPendiente(2, 5, 2, 10));
+    }
 }
